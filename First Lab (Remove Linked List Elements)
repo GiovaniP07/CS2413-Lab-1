@@ -54,7 +54,7 @@ int main() {
     printList(head);
     int val = 6;
     head = removeElements(head, val);
-    printf("List after removing 6 %d:\n", val);
+    printf("List after removing %d:\n", val);
     printList(head);
 
     return 0;
