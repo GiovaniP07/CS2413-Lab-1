@@ -35,7 +35,7 @@ struct ListNode* createNode(int val) {
 void printList(struct ListNode* head) {
     struct ListNode* temp = head;
     while (temp != NULL) {
-        printf("%d -> ", temp->val);
+        printf("%d - ", temp->val);
         temp = temp->next;
     }
     printf("NULL\n");
