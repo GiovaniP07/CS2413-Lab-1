@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct TreeNode {
+    int val;
+    struct TreeNode *left;
+    struct TreeNode *right;
+};
+
+void inorder(struct TreeNode* root, int* result, int* returnSize) {
+    if (root == NULL) return;
+    inorder(root->left, result, returnSize);
+    result[(*returnSize)++] = root->val;
+    inorder(root->right, result, returnSize);
+}
+
+int* inorderTraversal(struct TreeNode* root, int* returnSize) {
+    *returnSize = 0;
+    int* result = malloc(100 * sizeof(int));
+    inorder(root, result, returnSize);
+    return result;
+}
+
+int main() {
+    struct TreeNode* root = malloc(sizeof(struct TreeNode));
+    struct TreeNode* node2 = malloc(sizeof(struct TreeNode));
+    struct TreeNode* node3 = malloc(sizeof(struct TreeNode));
+
+    root->val = 1;
+    root->left = NULL;
+    root->right = node2;
+
+    node2->val = 2;
+    node2->left = node3;
+    node2->right = NULL;
+
+    node3->val = 3;
+    node3->left = NULL;
+    node3->right = NULL;
+
+    int returnSize;
+    int* output = inorderTraversal(root, &returnSize);
+
+    printf("Inorder Traversal: ");
+    for (int i = 0; i < returnSize; i++) {
+        printf("%d ", output[i]);
+    }
+    printf("\n");
+
+    free(root);
+    free(node2);
+    free(node3);
+    free(output);
+
+    return 0;
+}
